@@ -101,6 +101,7 @@ class _AboutScreenState extends State<AboutScreen>
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).colorScheme.primary,
                               ),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -111,6 +112,7 @@ class _AboutScreenState extends State<AboutScreen>
                                 .onSurface
                                 .withValues(alpha: 0.7),
                           ),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     // Contact Information

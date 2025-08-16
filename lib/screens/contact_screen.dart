@@ -191,30 +191,17 @@ class _ContactScreenState extends State<ContactScreen>
           const SizedBox(height: 24),
 
           // Email
-          _buildContactItem(
-            Icons.email,
-            "Email",
-            myEmail,
-            () => _launchUrl('mailto:$myEmail'),
-          ),
+          _buildContactItem(Icons.email, "Email", myEmail,
+              () => _launchUrl('mailto:$myEmail')),
           const SizedBox(height: 20),
 
           // Phone
           _buildContactItem(
-            Icons.phone,
-            "Phone",
-            myPhone,
-            () => _launchUrl('tel:$myPhone'),
-          ),
+              Icons.phone, "Phone", myPhone, () => _launchUrl('tel:$myPhone')),
           const SizedBox(height: 20),
 
           // Location
-          _buildContactItem(
-            Icons.location_on,
-            "Location",
-            myLocation,
-            null,
-          ),
+          _buildContactItem(Icons.location_on, "Location", myLocation, null),
           const SizedBox(height: 24),
 
           // Social Links
@@ -259,12 +246,18 @@ class _ContactScreenState extends State<ContactScreen>
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        link['name']!,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.w500,
-                            ),
+                      Flexible(
+                        child: Text(
+                          link['name']!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.w500,
+                              ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),

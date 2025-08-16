@@ -171,12 +171,15 @@ class _SkillsScreenState extends State<SkillsScreen>
                 size: 24,
               ),
               const SizedBox(width: 8),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+              Expanded(
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
@@ -192,7 +195,9 @@ class _SkillsScreenState extends State<SkillsScreen>
                     scale: 0.8 + (0.2 * _fadeAnimation.value),
                     child: Opacity(
                       opacity: _fadeAnimation.value,
-                      child: SkillChip(skill),
+                      child: Flexible(
+                        child: SkillChip(skill),
+                      ),
                     ),
                   );
                 },

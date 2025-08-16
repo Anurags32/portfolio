@@ -136,10 +136,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget _buildDrawer() {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          DrawerHeader(
+          // Drawer Header
+          Container(
+            height: 200,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -148,68 +149,92 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 3),
+                    ),
+                    child: const CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage("assets/images/profile.png"),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      myName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      myTagline,
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // Drawer Menu Items
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 3),
-                  ),
-                  child: const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage("assets/images/profile.png"),
-                  ),
+                ListTile(
+                  leading: const Icon(Icons.home),
+                  title: const Text("Home"),
+                  onTap: () => Navigator.pop(context),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  myName,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text("About"),
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const AboutScreen())),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  myTagline,
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 14,
-                  ),
-                  textAlign: TextAlign.center,
+                ListTile(
+                  leading: const Icon(Icons.work),
+                  title: const Text("Projects"),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ProjectsScreen())),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.star),
+                  title: const Text("Skills"),
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const SkillsScreen())),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.contact_mail),
+                  title: const Text("Contact"),
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const ContactScreen())),
                 ),
               ],
             ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text("Home"),
-            onTap: () => Navigator.pop(context),
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text("About"),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const AboutScreen())),
-          ),
-          ListTile(
-            leading: const Icon(Icons.work),
-            title: const Text("Projects"),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const ProjectsScreen())),
-          ),
-          ListTile(
-            leading: const Icon(Icons.star),
-            title: const Text("Skills"),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const SkillsScreen())),
-          ),
-          ListTile(
-            leading: const Icon(Icons.contact_mail),
-            title: const Text("Contact"),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const ContactScreen())),
           ),
         ],
       ),
@@ -217,182 +242,193 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Widget _buildDesktopLayout() {
-    return Row(
-      children: [
-        // Left side - Profile and Info
-        Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(48),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Profile Image
-                ScaleTransition(
-                  scale: _scaleAnimation,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withValues(alpha: 0.3),
-                          blurRadius: 30,
-                          spreadRadius: 10,
-                        ),
-                      ],
-                    ),
-                    child: const CircleAvatar(
-                      radius: 120,
-                      backgroundImage: AssetImage("assets/images/profile.png"),
+    return SingleChildScrollView(
+      child: Row(
+        children: [
+          // Left side - Profile and Info
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(48),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Profile Image
+                  ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withValues(alpha: 0.3),
+                            blurRadius: 30,
+                            spreadRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: const CircleAvatar(
+                        radius: 120,
+                        backgroundImage:
+                            AssetImage("assets/images/profile.png"),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
-                // Name and Tagline
-                FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: Column(
-                    children: [
-                      Text(
-                        myName,
-                        style:
-                            Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        myTagline,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withValues(alpha: 0.7),
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-
-        // Right side - Description and Quick Actions
-        Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(48),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SlideTransition(
-                  position: _slideAnimation,
-                  child: FadeTransition(
+                  // Name and Tagline
+                  FadeTransition(
                     opacity: _fadeAnimation,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome!",
+                          myName,
                           style: Theme.of(context)
                               .textTheme
-                              .headlineMedium
+                              .headlineLarge
                               ?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                         ),
-                        const SizedBox(height: 16),
-                        Container(
-                          padding: const EdgeInsets.all(24),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.surface,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.1),
-                                blurRadius: 15,
-                                offset: const Offset(0, 5),
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            myDescription,
-                            style:
-                                Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                      height: 1.6,
-                                    ),
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-
-                        // Quick Action Buttons
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton.icon(
-                                onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) =>
-                                            const ProjectsScreen())),
-                                icon: const Icon(Icons.work),
-                                label: const Text("View Projects"),
-                                style: ElevatedButton.styleFrom(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 16),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
+                        const SizedBox(height: 8),
+                        Text(
+                          myTagline,
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withValues(alpha: 0.7),
                                   ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: OutlinedButton.icon(
-                                onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => const ContactScreen())),
-                                icon: const Icon(Icons.contact_mail),
-                                label: const Text("Contact Me"),
-                                style: OutlinedButton.styleFrom(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 16),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+
+          // Right side - Description and Quick Actions
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(48),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SlideTransition(
+                    position: _slideAnimation,
+                    child: FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Welcome!",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.all(24),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.1),
+                                  blurRadius: 15,
+                                  offset: const Offset(0, 5),
+                                ),
+                              ],
+                            ),
+                            child: Text(
+                              myDescription,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    height: 1.6,
+                                  ),
+                            ),
+                          ),
+                          const SizedBox(height: 32),
+
+                          // Quick Action Buttons
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton.icon(
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const ProjectsScreen())),
+                                  icon: const Icon(Icons.work),
+                                  label: const Text("View Projects"),
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: OutlinedButton.icon(
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const ContactScreen())),
+                                  icon: const Icon(Icons.contact_mail),
+                                  label: const Text("Contact Me"),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildMobileLayout() {
-    return Center(
+    return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 20),
+
             // Profile Image
             ScaleTransition(
               scale: _scaleAnimation,
@@ -521,6 +557,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
