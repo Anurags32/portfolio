@@ -22,7 +22,7 @@ class PortfolioApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Portfolio',
+      title: 'Anurag Portfolio',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.themeMode,
