@@ -108,6 +108,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ],
       ),
       drawer: _buildDrawer(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const ContactScreen())),
+        icon: const Icon(Icons.message),
+        label: const Text("Contact"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -271,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         ],
                       ),
                       child: const CircleAvatar(
-                        radius: 120,
+                        radius: 80,
                         backgroundImage:
                             AssetImage("assets/images/profile.png"),
                       ),

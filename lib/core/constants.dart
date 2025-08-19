@@ -22,6 +22,8 @@ I believe in writing clean, maintainable code and staying up-to-date with the la
 const String myEmail = "anuragtiwari1172000@gmail.com";
 const String myPhone = "+91 8879381057";
 const String myLocation = "Noida, India";
+const String resumeUrl =
+    "https://drive.google.com/file/d/your-resume-file-id/view?usp=sharing";
 
 const List<Map<String, String>> socialLinks = [
   {

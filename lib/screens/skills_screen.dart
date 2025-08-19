@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../data/skills_data.dart';
 import '../widgets/skill_chip.dart';
+import '../data/skills_data.dart';
 
 class SkillsScreen extends StatefulWidget {
   const SkillsScreen({super.key});
@@ -225,67 +225,75 @@ class _SkillsScreenState extends State<SkillsScreen>
   }
 
   List<String> _getCoreSkills() {
-    return [
-      "Flutter Development",
-      "Dart",
-      "Android",
-      "SQLite",
-      "API Integration",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Firebase",
-      "Provider",
-    ];
+    return skills
+        .where((skill) => [
+              "Flutter Development",
+              "Dart",
+              "Android",
+              "SQLite",
+              "API Integration",
+              "Node.js",
+              "Express",
+              "MongoDB",
+              "Firebase",
+              "Provider",
+              "RESTful APIs",
+            ].contains(skill))
+        .toList();
   }
 
   List<String> _getDevTools() {
-    return [
-      "Android Studio",
-      "VSCode",
-      "Postman",
-      "RESTful APIs",
-      "Third-party Libraries",
-      "Version Control",
-      "Code Documentation",
-      "Testing",
-      "Debugging",
-      "Performance Optimization",
-    ];
+    return skills
+        .where((skill) => [
+              "Android Studio",
+              "VSCode",
+              "Postman",
+              "Third-party Libraries",
+              "Version Control",
+              "Code Documentation",
+              "Testing",
+              "Debugging",
+              "Performance Optimization",
+            ].contains(skill))
+        .toList();
   }
 
   List<String> _getSpecializations() {
-    return [
-      "Payment Gateway Integration",
-      "UPI Integration",
-      "BHIM UPI",
-      "Real-time Features",
-      "Chat & Call Integration",
-      "Push Notifications",
-      "Wallet Management",
-      "Booking Systems",
-      "Profile Management",
-      "Crypto Exchange",
-      "Dating App Development",
-      "Gaming Applications",
-      "Utility Bill Payments",
-      "Mobile Recharge",
-      "Investment Platforms",
-      "Insurance Integration",
-      "Anonymous Chat",
-      "Video & Audio Calls",
-    ];
+    return skills
+        .where((skill) => [
+              "Payment Gateway Integration",
+              "UPI Integration",
+              "BHIM UPI",
+              "Real-time Features",
+              "Chat & Call Integration",
+              "Push Notifications",
+              "Wallet Management",
+              "Booking Systems",
+              "Profile Management",
+              "Crypto Exchange",
+              "Dating App Development",
+              "Gaming Applications",
+              "Utility Bill Payments",
+              "Mobile Recharge",
+              "Investment Platforms",
+              "Insurance Integration",
+              "Anonymous Chat",
+              "Video & Audio Calls",
+            ].contains(skill))
+        .toList();
   }
 
   List<String> _getOtherSkills() {
-    return [
-      "SDLC",
-      "Agile Methodologies",
-      "State Management",
-      "UI/UX Design",
-      "Responsive Design",
-      "Cross-platform Development",
-      "Code Optimization",
-    ];
+    return skills
+        .where((skill) => [
+              "SDLC",
+              "Agile Methodologies",
+              "State Management",
+              "UI/UX Design",
+              "Responsive Design",
+              "Cross-platform Development",
+              "Code Optimization",
+            ].contains(skill))
+        .toList();
   }
 }

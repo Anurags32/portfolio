@@ -18,7 +18,7 @@ class _ContactFormState extends State<ContactForm> {
     final message = _messageController.text.trim();
     final uri = Uri(
       scheme: 'mailto',
-      path: 'anurag.tiwari@example.com',
+      path: 'anuragtiwari1172000@gmail.com',
       query:
           'subject=Portfolio Contact&body=${Uri.encodeComponent("$message\n\nFrom: $email")}',
     );
