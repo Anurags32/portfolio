@@ -195,9 +195,7 @@ class _SkillsScreenState extends State<SkillsScreen>
                     scale: 0.8 + (0.2 * _fadeAnimation.value),
                     child: Opacity(
                       opacity: _fadeAnimation.value,
-                      child: Flexible(
-                        child: SkillChip(skill),
-                      ),
+                      child: SkillChip(skill),
                     ),
                   );
                 },
